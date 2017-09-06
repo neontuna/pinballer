@@ -2,8 +2,17 @@ require "httparty"
 
 class Player < ApplicationRecord
 
+  has_and_belongs_to_many :matchplay_events
+
+  after_create :queue_stats
+
+  def queue_stats
+    GetIfpaStatsJob.perform_later(self)
+  end
+
   def save_ifpa_stats
-    update!(ifpa: get_ifpa_stats(ifpa_id))
+    stats = get_ifpa_stats(ifpa_id)
+    update(ifpa_stats: stats) unless !stats
   end
 
   def get_ifpa_stats(id)
