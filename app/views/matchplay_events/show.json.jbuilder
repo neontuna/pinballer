@@ -1,4 +1,7 @@
 json.array! @event.get_event_stats do |standing|
-  json.merge!       standing
-  json.ifpa_stats   Player.where(matchplay_player_id: standing["player_id"]).first&.ifpa_stats
+  player = Player.where(matchplay_player_id: standing["player_id"]).first
+
+  json.merge!           standing
+  json.ifpa_stats       player&.ifpa_stats
+  json.ifpa_updated_at  player&.updated_at
 end
