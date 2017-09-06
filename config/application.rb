@@ -31,5 +31,15 @@ module Pinballer
     config.api_only = true
 
     config.active_job.queue_adapter = :delayed_job
+
+    config.middleware.use Rack::Cors do
+      allow do
+        origins 'localhost:3000', 'fiddle.jshell.net', 'pinballer.herokuapp.com'
+        resource '*',
+          :headers => :any,
+          :expose  => ['Authorization', 'Content-Disposition', 'Content-Type'],
+          :methods => [:get, :post, :options, :delete, :put]
+      end
+    end
   end
 end
