@@ -7,7 +7,7 @@ class Player < ApplicationRecord
   after_create :queue_stats
 
   def queue_stats
-    GetIfpaStatsJob.perform_later(self)
+    GetIfpaStatsJob.perform_async(self.id)
   end
 
   def save_ifpa_stats

@@ -46,5 +46,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'httparty'
 gem 'figaro'
 gem 'jbuilder'
-gem 'delayed_job_active_record'
+gem 'sucker_punch', '~> 2.0'
 gem 'rack-cors', :require => 'rack/cors'

@@ -30,7 +30,7 @@ module Pinballer
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
 
-    config.active_job.queue_adapter = :delayed_job
+    config.active_job.queue_adapter = :sucker_punch
 
     config.middleware.use Rack::Cors do
       allow do
