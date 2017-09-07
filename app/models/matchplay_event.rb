@@ -30,13 +30,14 @@ class MatchplayEvent < ApplicationRecord
     end
   end
 
-  def associate_players
+  def associate_new_players
     players_list = get_event_players(matchplay_id)["players"]
+    existing_players = self.players.pluck(:ifpa_id)
 
     # create array with matchplay and ifpa IDs, delete any that are already
     # associated
     ifpa_ids = players_list.map do |p|
-      next if self.players.pluck(:ifpa_id).include?(p["ifpa_id"].to_s) || 
+      next if existing_players.include?(p["ifpa_id"].to_s) || 
         p["ifpa_id"] == nil
 
       {"ifpa_id": p["ifpa_id"], "matchplay_player_id": p["player_id"]}
