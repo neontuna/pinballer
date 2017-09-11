@@ -4,7 +4,7 @@ class MatchplayEvent < ApplicationRecord
 
   has_and_belongs_to_many :players
 
-  after_create :associate_players
+  # after_create :associate_new_players
 
   def get_event_stats
     response = HTTParty.get(
