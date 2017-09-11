@@ -34,7 +34,7 @@ module Pinballer
 
     config.middleware.use Rack::Cors do
       allow do
-        origins 'localhost:3000', 'fiddle.jshell.net', 'pinballer.herokuapp.com'
+        origins 'localhost:3000', 'fiddle.jshell.net', 'pinballer.herokuapp.com', 'abarigamebar.com'
         resource '*',
           :headers => :any,
           :expose  => ['Content-Type'],
